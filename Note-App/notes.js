@@ -15,7 +15,7 @@ var fetchNotes=()=>{
 var saveNotes=(notes)=>{
 fs.writeFileSync('notes-data.json',JSON.stringify(notes))
 }
-
+//add new note
 var addNote=(title,body)=>{
 // console.log('adding note', title,body)
 var notes=fetchNotes()
@@ -35,18 +35,20 @@ if(duplicateNotes.length===0){
 }
 }
 var getAll=()=>{
-  console.log('Getting all notes')
+  fetchNotes()
 }
-
+//get a specific note
 var getNote=(title)=>{
-  console.log('Reading note',title)
+  var notes=fetchNotes()
+  var filteredNotes=notes.filter((note)=>note.title===title)
+  return filteredNotes[0]
 }
 var removeNote=(title)=>{
   //get the note
   var notes=fetchNotes()
   //now the notes contain all the existing notes
   //find the one that was passed in the argument of the function
-  var filteredNotes=notes.filter((note)=> notes.title!==title)
+  var filteredNotes=notes.filter((note)=> note.title!==title)
     //save the new array
     saveNotes(filteredNotes)
     return notes.length !==filteredNotes.length
