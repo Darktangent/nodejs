@@ -18,21 +18,17 @@ if(command==='add'){
   var note=notes.addNote(argv.title, argv.body)
   if(note){
     console.log('Notes created')
-    console.log('---------')
-    console.log(`Title: ${note.title}`)
-    console.log(`Body: ${note.body}`)
+    notes.logNote(note)
   }else{
     console.log ('That title already exists')
   }
 }else if(command==='list'){
 notes.getAll()
-}else if(command==='read'){
+}else if(command==='read'){ //reading
 var note=  notes.getNote(argv.title)
   if(note){
     console.log('Reading notes')
-    console.log('---------')
-    console.log(`Title: ${note.title}`)
-    console.log(`Body: ${note.body}`)
+    notes.logNote(note)
   }else {
     console.log('Not found')
   }
