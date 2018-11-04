@@ -1,17 +1,38 @@
-console.log('Starting app')
-
 const fs = require('fs'); //store everything in fs
 const _ = require('lodash')
 const yargs = require('yargs')
 
 const notes = require('./notes.js')
+let titleOption = {
+  describe: 'Title of note',
+  demand: true,
+  alias: 't'
+}
+let bodyOption = {
+  describe: 'Body of the note',
+  demand: true,
+  alias: 'b'
 
-const argv = yargs.argv
+}
+const argv = yargs
+  .command('add', 'Add a new note', {
+    //argument it requires
+    title: titleOption,
+    body: bodyOption
+  })
+  .command('list', 'List all Notes')
+  .command('read', "Read a note", {
+    title: titleOption
+  }).command('remove', 'Remove a note', {
+    title: titleOption
+  })
+  .help()
+  .argv
 // var command= process.argv[2]
 var command = argv._[0]
 // console.log(command)
 // console.log('Process',process.argv)
-console.log('Yargs', argv)
+// console.log('Yargs', argv)
 
 
 if (command === 'add') {
