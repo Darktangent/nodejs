@@ -14,4 +14,10 @@ describe('App',()=>{
         spy('Andrew',25)
         expect(spy).toHaveBeenCalledWith('Andrew',25)
     })
+    it('should call saveUser with user object',()=>{
+        var email='rohan@example.com'
+        var password='123'
+        app.handleSignup(email,password)
+        expect(db.saveUser).toHaveBeenCalledWith({email, password})
+    })
 })
